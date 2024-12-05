@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação - Design Patterns</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            color: #0056b3;
+            border-left: 8px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .category {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .category h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+        .category p, .category ul {
+            margin: 10px 0;
+        }
+        .category ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        .category table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .category table th, .category table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .category table th {
+            background: #f1f1f1;
+        }
+        footer {
+            background: #f1f1f1;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Documentação - Design Patterns</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Design Patterns</h2>
+            <p>Design Patterns são soluções reutilizáveis para problemas recorrentes em um contexto específico. Eles não representam trechos de código, mas conceitos que podem ser aplicados ao design de software para melhorar sua estrutura e eficiência.</p>
+        </section>
+
+        <section class="category">
+            <h3>Creational Patterns</h3>
+            <p>Fornecem mecanismos de criação de objetos que aumentam a flexibilidade e reutilização do código. São eles:</p>
+            <ul>
+                <li><strong>Singleton:</strong> Garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela (a partir de uma propriedade static que possui o objeto classe alocada à ela).</li>
+                <li><strong>Builder:</strong> Permite construir objetos complexos passo a passo, usando o mesmo código de construção. É útil quando o objeto possui muitas opções de configuração. Identificação: uso de encadeamento (por exemplo: `algumBuilder->configValorA(1)->configValorB(2)->criar()`).</li>
+                <li><strong>Factory Method:</strong> Define uma interface para criar objetos, mas deixa as subclasses decidirem qual classe instanciar (mais simples e personalizável).</li>
+                <li><strong>Abstract Factory:</strong> Resolve o problema de criar famílias inteiras de produtos sem especificar suas classes concretas. Define uma interface para criar produtos, mas delega a criação real para classes concretas.</li>
+            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Factory Method</th>
+                        <th>Abstract Factory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Objetivo</td>
+                        <td>Criar um único tipo de produto</td>
+                        <td>Criar famílias de produtos relacionados</td>
+                    </tr>
+                    <tr>
+                        <td>Complexidade</td>
+                        <td>Mais simples, cria um único objeto por vez</td>
+                        <td>Mais complexo, gerencia vários objetos</td>
+                    </tr>
+                    <tr>
+                        <td>Abordagem</td>
+                        <td>Define um método para criar um produto</td>
+                        <td>Define uma interface para criar vários produtos</td>
+                    </tr>
+                    <tr>
+                        <td>Hierarquia de classes</td>
+                        <td>Baseia-se em subclasses para instanciar</td>
+                        <td>Cria várias classes concretas (fábricas e produtos)</td>
+                    </tr>
+                    <tr>
+                        <td>Exemplo comum</td>
+                        <td>Criar um transporte específico (carro, bicicleta)</td>
+                        <td>Criar UI específica para um sistema operacional</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="category">
+            <h3>Structural Patterns</h3>
+            <p>Explicam como montar objetos e classes em estruturas maiores, mantendo-as flexíveis e eficientes. São eles:</p>
+            <ul>
+                <li><strong>Adapter:</strong> Converte a interface de um objeto para que outro objeto possa entendê-lo. Ele encobre objetos para esconder a complexidade da conversão, permitindo compatibilidade entre diferentes interfaces. Resumidamente é um conversor de dados para fácil manipulação.</li>
+                <li><strong>Composite:</strong> Permite compor objetos em estruturas de árvore, facilitando o trabalho com essas estruturas como se fossem objetos únicos. É útil para problemas que envolvem hierarquias.</li>
+                <li><strong>Decorator:</strong> Permite anexar novos comportamentos a objetos em tempo de execução, colocando-os dentro de wrappers especiais. Útil quando herança não é possível ou prática.</li>
+                <li><strong>Facade:</strong> Simplifica a interação com subsistemas complexos, oferecendo uma interface simplificada para o cliente.</li>
+                <li><strong>Proxy:</strong> Substituto ou placeholder para outro objeto, controlando o acesso a ele e adicionando funcionalidades como cache, proteção ou log.</li>
+            </ul>
+        </section>
+
+        <section class="category">
+            <h3>Behavioral Patterns</h3>
+            <p>Cuidam da comunicação eficiente e da atribuição de responsabilidades entre objetos. Exemplos incluem:</p>
+            <ul>
+                <li><strong>Chain of Responsibility:</strong> Encadeia manipuladores para processar solicitações de maneira flexível. Exemplo prático são os middlewares.</li>
+                <li><strong>Command:</strong> Transforma solicitações em objetos autônomos, permitindo agendamento, reversibilidade e reutilização.</li>
+                <li><strong>Mediator:</strong> Simplifica relacionamentos complexos entre objetos, centralizando as interações em um mediador.</li>
+                <li><strong>Iterator:</strong> Permite percorrer coleções sem expor sua implementação interna.</li>
+                <li><strong>State:</strong> Altera o comportamento de um objeto com base no seu estado interno.</li>
+                <li><strong>Strategy:</strong> Separa algoritmos e dados, permitindo troca de algoritmos em tempo de execução.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>Documentação criada pelo <b>Leonardo Neves</b>.</p>
+    </footer>
+</body>
+</html>
