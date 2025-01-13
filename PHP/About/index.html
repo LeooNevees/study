@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tópicos sobre PHP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        nav {
+            background: #0056b3;
+            padding: 10px 0;
+            position: relative;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            position: relative;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+            position: relative;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul ul {
+            display: none;
+            position: absolute;
+            background: #0056b3;
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+            text-align: left;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+        nav ul ul li {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul ul li a {
+            padding: 10px 15px;
+            display: block;
+            white-space: nowrap;
+        }
+        nav ul ul li a:hover {
+            background: #007bff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #007bff;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0056b3;
+            padding: 10px 20px;
+        }
+        .nav-left {
+            color: #fff;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-left">
+        <span>Léo Neves</span>
+    </div>
+    <ul>
+        <li>
+            <a href="#php">PHP</a>
+            <ul>
+                <li><a href="#web">WEB</a></li>
+                <li><a href="#cli">CLI</a></li>
+                <li><a href="#interpretadores">Principais Interpretadores</a></li>
+                <li><a href="#diferenca">Diferença entre PHP-FPM e Swoole</a></li>
+            </ul>
+        </li>
+        <li><a href="#arquitetura">Arquitetura</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <section id="php">
+        <h2>PHP</h2>
+        <p>
+            As duas principais formas de utilizar o PHP são por scripts executados por linhas de comando (CLI) ou por scripts no lado do servidor, afim de processar algo e retornar para o navegador (WEB). Seguem mais detalhes sobre.
+        </p>
+        <h3 id="web">WEB</h3>
+        <p>
+            A utilização dos scripts do lado do servidor (server-side) é o mais comum entre todos, isso devido a ser extremamente fácil de executar com o PHP, precisando apenas do interpretador do PHP (CGI - Common Gateway Interface), o servidor WEB e navegador.
+        </p>
+        <h3 id="cli">CLI</h3>
+        <p>
+            Para utilizar o PHP via linha de comando basta apenas ter o PHP instalado, normalmente utilizados juntos com agendadores de tarefas ou algo do tipo.
+        </p>
+        <h3 id="interpretadores">Principais interpretadores do PHP utilizados no WEB:</h3>
+        <ul>
+            <li><strong>DSO (Dynamic Shared Object):</strong> Interpretador mais antigo que executa o PHP no mesmo processo do apache/nginx (mesmo usuário). Por ser mais simples e não possuir tanta segurança é o mais rápido;</li>
+            <li><strong>CGI (Common Gateway Interface):</strong> Interpretador responsável por executar o PHP com o seu próprio processo, porém com o usuário do apache (não sendo tão seguro quanto os próximos);</li>
+            <li><strong>FastCGI:</strong> Interpretador responsável por executar o PHP com o seu próprio processo e usuário do PHP, tornando mais seguro;</li>
+            <li><strong>FPM (FastCGI Process Manager):</strong> Interpretador que implementa o FastCGI com muitas melhorias, sendo mais funcionalidades e agilidade devido alocar mais recursos e scripts do php em memória, diminuindo as leituras em disco;</li>
+            <img class="image-container" src="../Files/php_fpm.png" alt="Comparação entre PHP-FPM e Swoole" width="100%" height="100%">
+            <li><strong>Swoole:</strong> Swoole é um mecanismo de comunicação de rede paralelo baseado em eventos assíncronos e corrotinas para PHP.</li>
+            <img class="image-container" src="../Files/swoole.png" alt="Comparação entre PHP-FPM e Swoole" width="100%" height="100%">
+        </ul>
+        <h3 id="diferenca">Diferença entre PHP-FPM e Swoole:</h3>
+        <p>
+            A princípio, o PHP-FPM é um interpretador do PHP que se comunica com o nginx (ou outro servidor web) para poder receber e responder requisições. Já o Swoole, é um interpretador de PHP e também um mecanismo de comunicação de rede (nginx) - sendo possível utilizar com ou sem o nginx dependendo da necessidade.
+        </p>
+        <div class="image-container">
+            <img class="image-container" src="../Files/apache_swoole.png" alt="Comparação entre PHP-FPM e Swoole" width="100%" height="100%">
+        </div>
+    </section>
+    <section id="arquitetura">
+        <h2>Arquitetura</h2>
+        <p>Descrição da arquitetura será adicionada aqui.</p>
+    </section>
+</div>
+</body>
+</html>
